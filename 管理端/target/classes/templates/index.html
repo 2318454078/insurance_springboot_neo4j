@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>IIC保单智能咨询平台后台管理系统</title>
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="css/signin.css" rel="stylesheet">
+	</head>
+
+	<body class="text-center">
+		<form class="form-signin" action="/login" method="post">
+			<img class="mb-4" src="img/bootstrap-solid.svg" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal">IIC保单智能咨询平台</h1>
+			<h1 class="h3 mb-3 font-weight-normal">后台管理系统</h1>
+			<p th:text="${msg}" class="alert-danger" th:if="${not #strings.isEmpty(msg)}"></p>
+			<label class="sr-only">Username</label>
+			<input type="text" name="username" class="form-control" placeholder="Username" required="required" autofocus="">
+			<label class="sr-only">Password</label>
+			<input type="password" name="pwd" class="form-control" placeholder="Password" required="required">
+			<div class="checkbox mb-3">
+				<label>
+          <input type="checkbox" value="remember-me"> 记住用户名
+        </label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+			<p class="mt-5 mb-3 text-muted">© 2019-2020</p>
+		</form>
+
+	</body>
+
+</html>

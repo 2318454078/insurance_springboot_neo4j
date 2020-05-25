@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dashboard Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="css/dashboard.css" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+	<div th:replace="~{common/common::topbar}"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div th:replace="~{common/common::sidebar(active='dashboard')}"></div>
+			</div>
+
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+				<div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+					<div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+						<div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+					</div>
+					<div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+						<div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+					</div>
+				</div>
+				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+					<h2 class="h2">平台入驻保险公司数据展示</h2>
+					<div class="btn-toolbar mb-2 mb-md-0">
+						<div class="btn-group mr-2">
+							<button class="btn btn-sm btn-outline-secondary">Share</button>
+							<button class="btn btn-sm btn-outline-secondary">Export</button>
+						</div>
+					</div>
+				</div>
+
+				<canvas class="my-4 chartjs-render-monitor" id="myChart" width="1076" height="454" style="display: block; width: 1076px; height: 454px;"></canvas>
+				</main>
+			</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="js/jquery-3.2.1.slim.min.js" ></script>
+		<script type="text/javascript" src="js/popper.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" src="js/feather.min.js" ></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" src="js/Chart.min.js" ></script>
+		<script>
+			var count1;
+			var count2;
+			var count3;
+			window.onload = function() {
+
+				ajax({
+					url: '/admin/count',
+					success: function (res) {
+						var jsonr = eval("(" + res + ")");
+						var k=0;
+						$.each(jsonr, function (key, value) {
+							switch (key) {
+								case "count1":
+								{
+									count1 =value;
+									break;
+								}
+								case "count2":
+								{
+									count2 = value;
+									break;
+								}
+								case "count3":
+								{
+									count3 = value;
+									break;
+								}
+
+							}
+						});
+						var ctx = document.getElementById("myChart");
+						var myChart = new Chart(ctx, {
+							type: 'line',
+							data: {
+								labels: ["百年人寿保险股份有限公司", "珠江人寿保险股份有限公司", "中融人寿保险股份有限公司"],
+								datasets: [{
+									data: [count1, count2, count3],
+									lineTension: 0,
+									backgroundColor: 'transparent',
+									borderColor: '#007bff',
+									borderWidth: 4,
+									pointBackgroundColor: '#007bff'
+								}]
+							},
+							options: {
+								scales: {
+									yAxes: [{
+										ticks: {
+											beginAtZero: false
+										}
+									}]
+								},
+								legend: {
+									display: false,
+								}
+							}
+						});
+					}
+				})
+			}
+				function ajax(obj) {
+					var xhr = null;
+					if (window.ActiveXObject) {
+						xhr = new ActiveXObject('Microsoft.XMLHTTP')
+					} else {
+						xhr = new XMLHttpRequest();
+					}
+
+					//打开与服务器的连接
+					if (obj.method) {
+						xhr.open(obj.method, obj.url, true);
+					} else {
+						xhr.open('get', obj.url, true);
+					}
+					xhr.setRequestHeader("Content-Type",
+							"application/x-www-form-urlencoded");
+					xhr.setRequestHeader("Authorization",
+							"APPCODE 3e9dfb924f464e9593a95f9d2bbf4348")
+
+					xhr.onreadystatechange = function() {
+
+						if (xhr.readyState == 4) {
+							//数据接收完毕
+							if (xhr.status == 200) {
+								//console.log('请求成功',xhr.responseText)
+								if (obj.success) {
+									obj.success(xhr.responseText);
+								}
+
+							} else {
+								//console.log(xhr.status,'请求出错')
+								if (obj.failure) {
+									obj.failure('请求失败');
+								}
+							}
+						}
+					}
+					if (obj.method == undefined || obj.method.toLowerCase() == 'get') {
+						xhr.send(null);
+					} else {
+						xhr.send(obj.params);
+
+					}
+				}
+
+
+
+		</script>
+
+	</body>
+
+</html>
