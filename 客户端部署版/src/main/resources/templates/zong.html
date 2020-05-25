@@ -1,0 +1,129 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keyword" content="">
+
+    <title>IIC智能保单处理系统</title>
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<section id="container" >
+
+    <!--header-->
+    <header class="header black-bg">
+        <div class="sidebar-toggle-box">
+            <img src="/images/caidan.png" alt="" style="height: 20px;">
+        </div>
+        </div>
+        <a href="/index" class="logo"><b>IIC保单智能咨询系统</b></a>
+    </header>
+
+    <!--sidebar-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li class="sub-menu">
+                    <a href="javascript:" >
+                        <img src="/images/keshihua1.png" alt="" style="height: 20px;">
+                        <span>数据可视化</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a  href="/data_visualization">单个公司数据</a></li>
+                        <li><a class="active" href="/zong">平台总数据</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub">
+                    <a  href="/policy_analysis" >
+                        <img src="/images/fenxi1.png" alt="" style="height: 20px;">
+                        <span>保单分析</span>
+                    </a>
+                </li>
+
+                <li class="sub">
+                    <a  href="/intelligent_assistant">
+                        <img src="/images/zhineng1.png" alt="" style="height: 20px;">
+                        <span>智能助手</span>
+                    </a>
+                </li>
+
+                <li class="sub">
+                    <a href="/download">
+                        <img src="/images/xiazai1.png" alt="" style="height: 20px;">
+                        <span>保单信息</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+    </aside>
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <h3><i class="fa fa-angle-right"></i>平台公司总数据</h3>
+
+                    <div class="col-lg-6">
+                        <div class="content-panel">
+                            <h4><i class="fa fa-angle-right"></i> 保险类型</h4>
+                            <div class="panel-body text-center">
+                                <canvas id="radar" height="300" width="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt">
+                    <div class="col-lg-6">
+                        <div class="content-panel">
+                            <h4><i class="fa fa-angle-right"></i> 投保年龄</h4>
+                            <div class="panel-body text-center">
+                                <canvas id="bar" height="300" width="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section><!-- /MAIN CONTENT -->
+
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+        <div class="text-center">
+            IIC保单智能咨询平台&emsp;© 2020
+        </div>
+    </footer>
+    <!--footer end-->
+</section>
+
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="assets/js/jquery.scrollTo.min.js"></script>
+<script src="assets/js/common-scripts.js"></script>
+<script src="assets/js/Chart.js"></script>
+<script src="assets/js/zong_js.js"></script>
+
+<script>
+    //custom select box
+
+    $(function(){
+        $('select.styled').customSelect();
+    });
+
+</script>
+
+</body>
+</html>
